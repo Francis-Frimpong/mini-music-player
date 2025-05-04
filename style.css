@@ -3,26 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    margin: 0;
-    min-height: 100vh; 
-    background: linear-gradient(113deg, #e1b97a, #ba1b01, #69c583, #d5302b);
-    background-size: 240% 240%;
-    animation: gradient-animation 16s ease infinite;
-  }
-
-  @keyframes gradient-animation {
-    0%   { background-position:   0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position:   0% 50%; }
-  }
 
 .player-interface{
     margin-top: 5em;
 }
 
 .music-player{
-    border: 3px solid rgb(204, 203, 203);
+    margin: 0;
+    /* min-height: 100vh;  */
+    background: linear-gradient(113deg, #e1b97a, #ba1b01, #69c583, #d5302b);
+    background-size: 240% 240%;
+    animation: gradient-animation 16s ease infinite;
     border-radius: 10px;
     width: 400px;
     height: 200px;
@@ -30,6 +21,12 @@ body {
     padding: .8em 2em;
     color: rgb(56, 54, 54);
 }
+
+@keyframes gradient-animation {
+    0%   { background-position:   0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position:   0% 50%; }
+  }
 
 .heading{
     text-align: left;
