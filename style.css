@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('image/gpt.png'); /* path to your image */
+    background-size: cover;      /* Make it cover the whole area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    height: 100vh;               /* Full screen height */
+  }
+
 .player-interface{
     margin-top: 5em;
 }
@@ -20,6 +30,8 @@
     margin: 0 auto;
     padding: .8em 2em;
     color: rgb(56, 54, 54);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
 }
 
 @keyframes gradient-animation {
