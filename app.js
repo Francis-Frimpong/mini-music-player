@@ -1,5 +1,6 @@
 const trackTitleAndArtist = document.querySelector('.artist-name-title');
 const nextSong = document.querySelector('.fa-forward-step');
+const play = document.querySelector('.fa-play');
 
 
 
@@ -23,6 +24,7 @@ const playList = [
 
 let currentSong = 0;
 trackTitleAndArtist.textContent = playList[currentSong];
+let music;
 
 function nextTrack() {
     trackTitleAndArtist.textContent = playList[++currentSong] 
@@ -32,4 +34,10 @@ function nextTrack() {
     }   
 }
 
+function playMusic() {
+    music = new Audio(`music/${playList[currentSong]}`)
+    music.play();
+}
+
 nextSong.addEventListener('click', nextTrack)
+play.addEventListener('click', playMusic);

@@ -45,9 +45,14 @@ body {
     font-size: large;
 }
 .artist-name-title{
+    margin: 1em auto 0 auto;
     margin-top: 1em;
-    text-align: center;
     font-size: larger;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 
 .music-slider{
