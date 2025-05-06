@@ -25,43 +25,50 @@ const playList = [
 
 let currentSong = 0;
 trackTitleAndArtist.textContent = playList[currentSong];
-let music;
 
-function playMusic() {
-    music = new Audio(`music/${playList[currentSong]}`)
-    music.play();
-}
+let music = new Audio();
+music.src = `music/${playList[currentSong]}`
 
-function pauseMusic(){
-    music.pause();
-}
+// function playMusic() {
+//     music.play();
+// }
+
+// function pauseMusic(){
+//     music.pause();
+// }
 
 
 function nextTrack() {
-    trackTitleAndArtist.textContent = playList[++currentSong] 
+    let nowPlaying = trackTitleAndArtist.textContent = playList[++currentSong]; 
+    music.src = `music/${nowPlaying}`;
+    play.style.display = 'block';
+    pause.style.display = 'none';
+    
 
     //if currentSong is playing previous song should stop playing.
     if(currentSong >= playList.length) {
         currentSong = 0;
-        trackTitleAndArtist.textContent = playList[currentSong];
+        nowPlaying = trackTitleAndArtist.textContent = playList[currentSong];
+        music.src = `music/${nowPlaying}`;
+
     }   
 }
 
-
-nextSong.addEventListener('click', nextTrack)
-play.addEventListener('click', playMusic);
-pause.addEventListener('click', pauseMusic)
-
-document.querySelector('.play-pause-btn').addEventListener('click', () => {
-    if(!music.paused){
-        pause.style.display = 'none';
-        play.style.display = 'block';
-        pauseMusic()
-        
-    }else if(music.paused){
-        play.style.display = 'none';
+function playPause(){
+    if(music.paused){
         pause.style.display = 'block';
-        playMusic()
+        play.style.display = 'none';
+        music.play()
+        
+    }else{
+        play.style.display = 'block';
+        pause.style.display = 'none';
+        music.pause()
 
     }
-})
+}
+
+nextSong.addEventListener('click', nextTrack)
+
+
+document.querySelector('.play-pause-btn').addEventListener('click', playPause)
