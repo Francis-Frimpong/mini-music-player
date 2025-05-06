@@ -2,6 +2,7 @@ const trackTitleAndArtist = document.querySelector('.artist-name-title');
 const nextSong = document.querySelector('.fa-forward-step');
 const play = document.querySelector('.fa-play');
 const pause = document.querySelector('.fa-pause');
+let musicSlider = document.querySelector('.music-slider')
 
 
 
@@ -29,13 +30,7 @@ trackTitleAndArtist.textContent = playList[currentSong];
 let music = new Audio();
 music.src = `music/${playList[currentSong]}`
 
-// function playMusic() {
-//     music.play();
-// }
 
-// function pauseMusic(){
-//     music.pause();
-// }
 
 
 function nextTrack() {
@@ -68,7 +63,27 @@ function playPause(){
     }
 }
 
-nextSong.addEventListener('click', nextTrack)
+//Moves the slider when audio play(timeupdate)
+function onAudioTick(){
+    let percent = (music.currentTime / music.duration) * 100;
+    musicSlider.value = percent;
+}
+// Forward the time stamp of the audio when slider is drag(input)
+function onSliderDrag(){
+    let seekTime = (musicSlider.value / 100) * music.duration;
+    music.currentTime = seekTime;
+}
 
+//Contains all event listeners.
+function eventListeners(){
+    nextSong.addEventListener('click', nextTrack)
+    
+    music.addEventListener('timeupdate', onAudioTick);
+    
+    musicSlider.addEventListener('input', onSliderDrag);
+    
+    document.querySelector('.play-pause-btn').addEventListener('click', playPause)
 
-document.querySelector('.play-pause-btn').addEventListener('click', playPause)
+}
+
+eventListeners();
