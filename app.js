@@ -1,6 +1,7 @@
 const trackTitleAndArtist = document.querySelector('.artist-name-title');
 const nextSong = document.querySelector('.fa-forward-step');
 const play = document.querySelector('.fa-play');
+const pause = document.querySelector('.fa-pause');
 
 
 
@@ -26,18 +27,41 @@ let currentSong = 0;
 trackTitleAndArtist.textContent = playList[currentSong];
 let music;
 
+function playMusic() {
+    music = new Audio(`music/${playList[currentSong]}`)
+    music.play();
+}
+
+function pauseMusic(){
+    music.pause();
+}
+
+
 function nextTrack() {
     trackTitleAndArtist.textContent = playList[++currentSong] 
+
+    //if currentSong is playing previous song should stop playing.
     if(currentSong >= playList.length) {
         currentSong = 0;
         trackTitleAndArtist.textContent = playList[currentSong];
     }   
 }
 
-function playMusic() {
-    music = new Audio(`music/${playList[currentSong]}`)
-    music.play();
-}
 
 nextSong.addEventListener('click', nextTrack)
 play.addEventListener('click', playMusic);
+pause.addEventListener('click', pauseMusic)
+
+document.querySelector('.play-pause-btn').addEventListener('click', () => {
+    if(!music.paused){
+        pause.style.display = 'none';
+        play.style.display = 'block';
+        pauseMusic()
+        
+    }else if(music.paused){
+        play.style.display = 'none';
+        pause.style.display = 'block';
+        playMusic()
+
+    }
+})
