@@ -32,13 +32,9 @@ music.src = `music/${playList[currentSong]}`
 
 
 
-
+// Move to the next track
 function nextTrack() {
     let nowPlaying = trackTitleAndArtist.textContent = playList[++currentSong]; 
-    music.src = `music/${nowPlaying}`;
-    play.style.display = 'block';
-    pause.style.display = 'none';
-    
 
     //if currentSong is playing previous song should stop playing.
     if(currentSong >= playList.length) {
@@ -47,8 +43,30 @@ function nextTrack() {
         music.src = `music/${nowPlaying}`;
 
     }   
-}
 
+    music.src = `music/${nowPlaying}`;
+    musicSlider.value = 0;
+    
+    play.style.display = 'block';
+    pause.style.display = 'none';
+    
+    music.play()
+
+
+}
+music.addEventListener('ended', nextTrack);
+
+music.addEventListener('play', () => {
+    play.style.display = 'none';
+    pause.style.display = 'block';
+})
+music.addEventListener('timeupdate', () => {
+    musicSlider.value =  (music.currentTime / music.duration) * 100;
+})
+
+
+
+// Play & Pause function
 function playPause(){
     if(music.paused){
         pause.style.display = 'block';
@@ -63,16 +81,22 @@ function playPause(){
     }
 }
 
+
+
 //Moves the slider when audio play(timeupdate)
 function onAudioTick(){
     let percent = (music.currentTime / music.duration) * 100;
-    musicSlider.value = percent;
+     musicSlider.value = percent;
 }
+
+
 // Forward the time stamp of the audio when slider is drag(input)
 function onSliderDrag(){
     let seekTime = (musicSlider.value / 100) * music.duration;
     music.currentTime = seekTime;
 }
+
+
 
 //Contains all event listeners.
 function eventListeners(){
@@ -86,4 +110,5 @@ function eventListeners(){
 
 }
 
+//Calling all event listeners
 eventListeners();
