@@ -4,12 +4,6 @@ const play = document.querySelector('.fa-play');
 const pause = document.querySelector('.fa-pause');
 let musicSlider = document.querySelector('.music-slider')
 
-
-
-
-
-
-
 const playList = [
     "alone-296348.mp3",
     "dont-talk-315229.mp3",
