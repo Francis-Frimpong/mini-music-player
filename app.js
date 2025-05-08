@@ -5,6 +5,7 @@ const pause = document.querySelector('.fa-pause');
 let musicSlider = document.querySelector('.music-slider')
 
 const playList = [
+    "davido-inspired-176432.mp3",
     "alone-296348.mp3",
     "dont-talk-315229.mp3",
     "epic-trailer-background-music-emotional-dramatic-cinematic-intro-249656.mp3",
@@ -12,10 +13,14 @@ const playList = [
     "gardens-stylish-chill-303261.mp3",
     "happy-playful-music-cute-sweet-kid-child-baby-background-intro-theme-277965.mp3",
     "hip-hop-black-angel-mid-2-161266.mp3",
+    "off-the-grid-161305.mp3",
     "in-slow-motion-inspiring-ambient-lounge-219592.mp3",
     "kugelsicher-by-tremoxbeatz-302838.mp3",
     "so-fresh-315255.mp3",
-    "spring-easter-day-music-30-seconds-version-320430.mp3"
+    "royalty-free-word-strikes-i-hard-rap-beat-335823.mp3",
+    "spring-easter-day-music-30-seconds-version-320430.mp3",
+    "afro-house-x-afro-beat-mastery-292197.mp3",
+    "melodic-sundays-south-african-amapiano-245447.mp3"
 ];
 
 let currentSong = 0;
