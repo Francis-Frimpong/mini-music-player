@@ -54,16 +54,33 @@ function nextTrack() {
 
 
 }
-music.addEventListener('ended', nextTrack);
 
+// anytime music is being played update the UI of the controllers
 music.addEventListener('play', () => {
     play.style.display = 'none';
     pause.style.display = 'block';
 })
+
+//Update music slider base on the timeupdate
 music.addEventListener('timeupdate', () => {
     musicSlider.value =  (music.currentTime / music.duration) * 100;
 })
 
+//check if current song is less than the list of songs,if yes move to the next track else dont move to the next track
+music.addEventListener('ended', () => {
+
+    if(currentSong < playList.length - 1){
+        nextTrack()
+    }else {
+        music.pause();
+        currentSong = 0;
+        let nowPlaying = trackTitleAndArtist.textContent = playList[currentSong];
+        music.src = `music/${nowPlaying}`;
+        play.style.display = 'block';
+        pause.style.display = 'none';
+    }
+
+})
 
 
 // Play & Pause function
