@@ -1,5 +1,6 @@
 const trackTitleAndArtist = document.querySelector('.artist-name-title');
 const nextSong = document.querySelector('.fa-forward-step');
+const previousSong = document.querySelector('.fa-backward-step');
 const play = document.querySelector('.fa-play');
 const pause = document.querySelector('.fa-pause');
 let musicSlider = document.querySelector('.music-slider')
@@ -37,6 +38,28 @@ function nextTrack() {
 
     //if currentSong is playing previous song should stop playing.
     if(currentSong >= playList.length) {
+        currentSong = 0;
+        nowPlaying = trackTitleAndArtist.textContent = playList[currentSong];
+        music.src = `music/${nowPlaying}`;
+
+    }   
+
+    music.src = `music/${nowPlaying}`;
+    musicSlider.value = 0;
+    
+    play.style.display = 'block';
+    pause.style.display = 'none';
+    
+    music.play()
+
+
+}
+
+//Move to the previous track
+function previousTrack() {
+    let nowPlaying = trackTitleAndArtist.textContent = playList[--currentSong]; 
+
+    if(currentSong < playList.length) {
         currentSong = 0;
         nowPlaying = trackTitleAndArtist.textContent = playList[currentSong];
         music.src = `music/${nowPlaying}`;
@@ -116,6 +139,7 @@ function onSliderDrag(){
 
 //Contains all event listeners.
 function eventListeners(){
+    previousSong.addEventListener('click', previousTrack)
     nextSong.addEventListener('click', nextTrack)
     
     music.addEventListener('timeupdate', onAudioTick);
