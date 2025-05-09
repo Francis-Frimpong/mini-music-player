@@ -59,7 +59,7 @@ function nextTrack() {
 function previousTrack() {
     let nowPlaying = trackTitleAndArtist.textContent = playList[--currentSong]; 
 
-    if(currentSong < playList.length) {
+    if(currentSong < 0) {
         currentSong = 0;
         nowPlaying = trackTitleAndArtist.textContent = playList[currentSong];
         music.src = `music/${nowPlaying}`;
