@@ -121,6 +121,23 @@ function playPause(){
 }
 
 
+// Loop current song function
+music.loop = false;
+
+function loopCurrentSong(){
+    if(music.loop === false){
+        music.loop = true;
+        document.querySelector('.fa-repeat').classList.add('toggleColor');
+        console.log('loop music');
+    }else {
+        music.loop = false;
+        document.querySelector('.fa-repeat').classList.remove('toggleColor');
+        console.log('stop loop');
+
+    }
+    
+}
+
 
 //Moves the slider when audio play(timeupdate)
 function onAudioTick(){
@@ -140,6 +157,7 @@ function onSliderDrag(){
 //Contains all event listeners.
 function eventListeners(){
     previousSong.addEventListener('click', previousTrack)
+
     nextSong.addEventListener('click', nextTrack)
     
     music.addEventListener('timeupdate', onAudioTick);
@@ -147,6 +165,8 @@ function eventListeners(){
     musicSlider.addEventListener('input', onSliderDrag);
     
     document.querySelector('.play-pause-btn').addEventListener('click', playPause)
+
+    document.querySelector('.repeat-btn').addEventListener('click', loopCurrentSong);
 
 }
 

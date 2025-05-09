@@ -16,9 +16,10 @@ body {
 
 .player-interface{
     margin-top: 5em;
-}
-
-.music-player{
+  }
+  
+  .music-player{
+    position: relative;
     margin: 0;
     /* min-height: 100vh;  */
     background: linear-gradient(113deg, #e1b97a, #ba1b01, #69c583, #d5302b);
@@ -68,6 +69,16 @@ body {
 
 .play-pause-btn{
     margin: 0 3em;
+}
+
+.repeat-btn{
+    position: absolute;
+    left: 16.4em;
+    font-size: 1.3rem;
+}
+
+.toggleColor{
+  color: #e2e1e1;
 }
 
 .fa-pause{
