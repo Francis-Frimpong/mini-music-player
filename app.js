@@ -128,12 +128,9 @@ function loopCurrentSong(){
     if(music.loop === false){
         music.loop = true;
         document.querySelector('.fa-repeat').classList.add('toggleColor');
-        console.log('loop music');
     }else {
         music.loop = false;
         document.querySelector('.fa-repeat').classList.remove('toggleColor');
-        console.log('stop loop');
-
     }
     
 }
