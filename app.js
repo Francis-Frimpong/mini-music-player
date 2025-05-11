@@ -31,35 +31,59 @@ let music = new Audio();
 music.src = `music/${playList[currentSong]}`
 
 
-music.addEventListener('loadedmetadata', () => {
+
+
+//function for total audio duration
+function totalAudioDuration(){
+    let padMinutes;
+    let padSeconds;
+
     const musicDuration =  Math.floor(music.duration);
     let wholeMinutes = Math.floor(musicDuration / 60 )
     
     let remainingSeconds = wholeMinutes * 60;
     
-    
-    let convertDuration = musicDuration - remainingSeconds
-    if (convertDuration < 10) {
-        document.querySelector('.audio-duration').textContent = `${wholeMinutes}:${"0".concat(convertDuration)}`
-    } else {
-        document.querySelector('.audio-duration').textContent = `${wholeMinutes}:${convertDuration}`
+    let convertDuration = musicDuration - remainingSeconds;
+
+    if (wholeMinutes < 10){
+        padMinutes = "0".concat(wholeMinutes);
+    } else{
+        padMinutes = currentMinutes;
     }
 
-})
+    if(convertDuration < 10){
+        padSeconds = "0".concat(convertDuration);
+    }else{
+        padSeconds = convertDuration;
+    }
+    
+    document.querySelector('.audio-duration').textContent = `${padMinutes}:${padSeconds}`
+}
 
-music.addEventListener('timeupdate', () => {
+//function for audio timer when audio is being played
+function audioTimer(){
+    let padMinutes;
+    let padSeconds;
     const currentMusicTime =  Math.floor(music.currentTime);
     let currentMinutes = Math.floor(currentMusicTime / 60 )
     
     let remainingSeconds = currentMinutes * 60
     let convertDuration = currentMusicTime - remainingSeconds
-     if (convertDuration < 10) {
-        document.querySelector('.audio-timer').textContent = `${currentMinutes}:${"0".concat(convertDuration)}`
-    } else {
-        document.querySelector('.audio-timer').textContent = `${currentMinutes}:${convertDuration}`
+
+    if (currentMinutes < 10){
+        padMinutes = "0".concat(currentMinutes);
+    } else{
+        padMinutes = currentMinutes;
     }
 
-})
+    if(convertDuration < 10){
+        padSeconds = "0".concat(convertDuration);
+    }else{
+        padSeconds = convertDuration;
+    }
+
+    document.querySelector('.audio-timer').textContent = `${padMinutes}:${padSeconds}`
+}
 
 
 
@@ -191,10 +215,16 @@ function eventListeners(){
     music.addEventListener('timeupdate', onAudioTick);
     
     musicSlider.addEventListener('input', onSliderDrag);
+
+    music.addEventListener('loadedmetadata', totalAudioDuration);
+
+    music.addEventListener('timeupdate', audioTimer);
     
     document.querySelector('.play-pause-btn').addEventListener('click', playPause)
 
     document.querySelector('.repeat-btn').addEventListener('click', loopCurrentSong);
+
+
 
 }
 
