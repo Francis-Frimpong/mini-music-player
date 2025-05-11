@@ -31,6 +31,37 @@ let music = new Audio();
 music.src = `music/${playList[currentSong]}`
 
 
+music.addEventListener('loadedmetadata', () => {
+    const musicDuration =  Math.floor(music.duration);
+    let wholeMinutes = Math.floor(musicDuration / 60 )
+    
+    let remainingSeconds = wholeMinutes * 60;
+    
+    
+    let convertDuration = musicDuration - remainingSeconds
+    if (convertDuration < 10) {
+        document.querySelector('.audio-duration').textContent = `${wholeMinutes}:${"0".concat(convertDuration)}`
+    } else {
+        document.querySelector('.audio-duration').textContent = `${wholeMinutes}:${convertDuration}`
+    }
+
+})
+
+music.addEventListener('timeupdate', () => {
+    const currentMusicTime =  Math.floor(music.currentTime);
+    let currentMinutes = Math.floor(currentMusicTime / 60 )
+    
+    let remainingSeconds = currentMinutes * 60
+    let convertDuration = currentMusicTime - remainingSeconds
+     if (convertDuration < 10) {
+        document.querySelector('.audio-timer').textContent = `${currentMinutes}:${"0".concat(convertDuration)}`
+    } else {
+        document.querySelector('.audio-timer').textContent = `${currentMinutes}:${convertDuration}`
+    }
+
+})
+
+
 
 // Move to the next track
 function nextTrack() {
@@ -88,7 +119,7 @@ music.addEventListener('timeupdate', () => {
     musicSlider.value =  (music.currentTime / music.duration) * 100;
 })
 
-//check if current song is less than the list of songs,if yes move to the next track else dont move to the next track
+//check if current song is less than the length of the list of songs,if yes move to the next track else dont move to the next track
 music.addEventListener('ended', () => {
 
     if(currentSong < playList.length - 1){
@@ -169,3 +200,6 @@ function eventListeners(){
 
 //Calling all event listeners
 eventListeners();
+
+
+
